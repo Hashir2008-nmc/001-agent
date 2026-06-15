@@ -30,6 +30,31 @@ class SlackAIAgen {
         this.webClint = new this.webClint(process.env.SLACK_BOT_TOKEN);
         this.openai = new ChatOpenAI({
             model: "gpt-4",
+            temperature: 0.3,
             apiKey: process.env.OPENAI_API_KEY,
+        });
+
+        this.setupSlackEvents();
+        this.setupExpress();
     }
+
+    setupSlackEvents() {
+    this.slack.event('team_join', async ({ event }) => {
+        try {
+            log.info(`New member joined: ${event.user.real_name || event.user.name}`)
+            const userInfo = await this.getUserInfo(event.user.id);
+            await this.analyzeAndPostMember(userInfo);
+
+
+        } catch (error) {
+            log.error('Error processing team_join:', error.message)
+        }
+    });
+
+    this.Slack.event('member_joined_channel', async ({ event }) => {
+        try {
+
+        } catch (error) {
+            log.error('Error processing member_joined_channel:', error.message)
+        }
 }
