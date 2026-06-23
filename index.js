@@ -382,3 +382,4 @@ agent.start().catch(err => {
 process.on('SIGTERM', () => agent.stop());
 process.on('SIGINT', () => agent.stop());
 
+export default agent;
