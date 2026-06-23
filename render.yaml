@@ -11,3 +11,19 @@ services:
         fromDatabase:
           name: slack-db # Must match your Render DB name
           property: connectionString
+      - key: SLACK_BOT_TOKEN
+        sync: false
+      - key: SLACK_APP_TOKEN
+        sync: false
+      - key: SLACK_SIGNING_SECRET
+        sync: false
+      - key: SLACK_PRIVATE_CHANNEL_ID
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
+      - key: COMPANY_NAME
+        sync: false
+      - key: COMPANY_PRODUCT
+        sync: false
